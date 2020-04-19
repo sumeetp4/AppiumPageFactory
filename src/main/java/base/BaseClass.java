@@ -3,6 +3,7 @@ package base;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 import java.net.MalformedURLException;
@@ -27,4 +28,10 @@ public class BaseClass {
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
+    @AfterTest
+    public void teardown() {
+        if(null != driver) {
+            driver.quit();
+        }
+    }
 }
